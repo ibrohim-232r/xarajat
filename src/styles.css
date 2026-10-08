@@ -1,0 +1,389 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f3f4f8;--card:#fff;--ink:#111214;--mut:#7b8190;--line:#e4e6ec;--soft:#eef0f4;--bar:#dcdee5;--g:#1f9d5f;--r:#d03c3f;--gb:#e9f6ef;--rb:#fdeded;--acc:#4f46e5;--acc-ink:#fff;--sh:0 1px 2px rgba(20,24,40,.04),0 8px 24px rgba(20,24,40,.05)}
+[data-theme=dark]{--bg:#0d0e12;--card:#16181f;--ink:#eceef3;--mut:#8b91a1;--line:#252935;--soft:#212430;--bar:#2a2e3a;--g:#3ecf8e;--r:#ff6b6e;--gb:#11271d;--rb:#2b1719;--sh:none}
+html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
+body{font-family:Roboto,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;transition:background .3s}
+button,input,select{font:inherit;color:inherit}
+.shell{display:flex;min-height:100vh}
+.side{width:250px;flex:none;position:sticky;top:0;height:100vh;padding:24px 14px;display:flex;flex-direction:column;gap:4px;background:var(--card);border-right:1px solid var(--line)}
+.logo{font-weight:800;font-size:19px;margin:0 10px 20px}
+.nv{display:flex;gap:12px;align-items:center;padding:12px 14px;border:0;background:none;border-radius:14px;color:var(--mut);cursor:pointer;font-size:15px;text-align:left;transition:.2s}
+.nv:hover{background:var(--soft)}.nv.on{background:var(--acc);color:var(--acc-ink);font-weight:600}
+.me{margin-top:auto;display:flex;gap:10px;align-items:center;padding:10px;border-radius:14px;cursor:pointer;font-size:14px}.me:hover{background:var(--soft)}
+.main{flex:1;min-width:0}
+.wrap{max-width:1060px;margin:0 auto;padding:28px 26px 48px;animation:up .35s ease}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px}
+.top h1{font-size:clamp(20px,3vw,28px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ava{border-radius:50%;display:grid;place-items:center;font-weight:700;border:0;cursor:pointer;flex:none}
+.bottom{display:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--sh);transition:transform .2s,box-shadow .2s}
+.card+.card.sp{margin-top:14px}
+.hero{background:linear-gradient(135deg,var(--acc),color-mix(in srgb,var(--acc) 45%,#000));color:var(--acc-ink);border:0;padding:30px;margin-bottom:14px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.1)}
+.hero small{opacity:.75}.hero b{display:block;font-size:clamp(30px,5vw,44px);margin:14px 0;letter-spacing:-.5px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.g3{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-bottom:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two .btn{margin-top:0}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}.col{display:flex;flex-direction:column;gap:14px}
+.mut{color:var(--mut);font-size:14px}.pos{color:var(--g)}.neg{color:var(--r)}
+.big{font-size:clamp(18px,2.4vw,26px);font-weight:700;margin-top:10px;word-break:break-word}
+.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.hd h3,.h{font-size:18px;font-weight:600}.h{margin-bottom:4px}
+.link{background:none;border:0;color:var(--mut);cursor:pointer;font-size:14px}.link:hover{color:var(--ink)}
+.chart{display:flex;align-items:flex-end;gap:12px;height:190px;padding-top:10px}
+.chart div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-size:12px;color:var(--mut);gap:6px}
+.chart i{display:block;width:100%;background:var(--bar);border-radius:10px;min-height:4px;transition:.5s}
+.chart div:hover i{background:var(--mut)}.chart .on i{background:var(--acc)}
+.chart.days{gap:3px;height:160px}.chart.days div{font-size:9px}.chart.days i{border-radius:4px}
+.op{display:flex;align-items:center;gap:12px;padding:12px 6px;border-bottom:1px solid var(--line);border-radius:10px}
+.op:last-of-type{border:0}.op.click{cursor:pointer}.op.click:hover{background:var(--soft)}
+.ic{width:42px;height:42px;border-radius:13px;background:var(--soft);display:grid;place-items:center;font-size:19px;flex:none}
+.op .t{flex:1;min-width:0}.op .t b{font-weight:500;display:block}.op .t span{font-size:12px;color:var(--mut)}
+.op .t span.n{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.op strong{font-weight:500;white-space:nowrap}
+.x{background:none;border:0;color:var(--mut);cursor:pointer;font-size:17px;padding:4px 6px}.x:hover{color:var(--r)}
+.btn{width:100%;border:0;border-radius:14px;padding:15px;background:var(--acc);color:var(--acc-ink);font-weight:600;cursor:pointer;margin-top:12px;transition:.15s}
+.btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.98)}.btn:disabled{opacity:.6}
+.btn.s{background:var(--soft);color:var(--ink)}.btn.danger{background:var(--r);color:#fff}
+.btn.in{background:var(--gb);color:var(--g);border:1px solid color-mix(in srgb,var(--g) 25%,transparent);margin:0}
+.btn.out{background:var(--rb);color:var(--r);border:1px solid color-mix(in srgb,var(--r) 25%,transparent);margin:0}
+.goal{background:var(--gb);border-color:color-mix(in srgb,var(--g) 20%,transparent)}
+.bar{height:9px;background:var(--soft);border-radius:9px;margin:12px 0 8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--g);border-radius:9px;transition:.6s}
+.goal .bar{background:color-mix(in srgb,var(--g) 18%,transparent)}
+.budget .bar i{background:var(--acc)}.budget.warn .bar i{background:#f59e0b}.budget.over .bar i{background:var(--r)}
+.row{display:flex;justify-content:space-between}
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+input,select{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);margin-top:6px;outline:none;transition:.15s}
+input:focus,select:focus{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 18%,transparent)}
+label{display:block;font-size:13px;color:var(--mut);margin-top:12px}
+.seg{display:flex;gap:8px;margin:6px 0}
+.seg button{flex:1;padding:11px;border-radius:12px;border:1px solid var(--line);background:var(--card);cursor:pointer}
+.seg button.on{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.ov{position:fixed;inset:0;background:rgba(8,9,14,.55);backdrop-filter:blur(3px);display:grid;place-items:center;padding:16px;z-index:30;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.md{background:var(--card);border-radius:24px;padding:24px;width:100%;max-width:430px;max-height:92vh;overflow:auto;animation:up .25s}
+.md h3{margin-bottom:6px}
+.login{max-width:400px;margin:12vh auto;padding:0 16px}.login .card{padding:32px}
+.err{color:var(--r);font-size:13px;margin-top:10px;min-height:18px}
+.tbl td{padding:11px 4px;border-bottom:1px solid var(--line);font-size:14px}
+.sm{padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:13px;margin-left:4px}.sm:disabled{opacity:.4}
+.empty{text-align:center;color:var(--mut);padding:26px 0;font-size:14px}
+.banner{position:fixed;top:0;left:0;right:0;background:var(--r);color:#fff;text-align:center;padding:10px;font-size:14px;z-index:50}
+.phead{display:flex;gap:18px;align-items:center}.phead h2{font-size:22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{min-width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:18px}
+.chip.on{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 22%,transparent)}
+.sw{width:36px;height:36px;border-radius:50%;border:3px solid var(--card);cursor:pointer;outline:1px solid var(--line)}.sw.on{outline:3px solid var(--acc)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.stats div{background:var(--soft);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px}.stats b{font-size:16px}
+.mnav{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding:12px 16px}.mnav b{font-size:18px}
+.insight{margin-bottom:14px;line-height:1.6;font-size:15px}
+.donutw{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.donut{width:160px;height:160px;flex:none;margin:0 auto}
+.leg{flex:1;min-width:180px;display:flex;flex-direction:column;gap:9px}
+.leg div{display:flex;align-items:center;gap:8px;font-size:14px}.leg i{width:11px;height:11px;border-radius:4px;flex:none}
+.leg span{flex:1}.leg em{color:var(--mut);font-style:normal;width:38px;text-align:right}
+@media(max-width:860px){
+  .side{display:none}
+  .wrap{padding:16px 14px 100px}
+  .bottom{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:20;background:var(--card);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+  .bottom button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 2px;border-radius:12px;color:var(--mut);font-size:11px;cursor:pointer}
+  .bottom button span{font-size:19px}.bottom button.on{color:var(--acc);font-weight:700;background:var(--soft)}
+  .g3,.pgrid{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}
+  .card{padding:18px;border-radius:20px}
+}
+@media(max-width:420px){.g2 .card{padding:14px}.two{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.chart{gap:7px}}
+@media print{.side,.bottom,.noprint,.top .ava{display:none!important}.wrap{padding:0;animation:none}body{background:#fff}.card{box-shadow:none}}
+
+/* ===== v4: без горизонтального скролла, экран главной помещается целиком ===== */
+html,body{overflow-x:hidden}
+.shell{height:100dvh}
+.side{height:100dvh;position:relative}
+.main{display:flex;flex-direction:column;overflow-y:auto;min-width:0}
+.wrap{flex:1;min-height:0;width:100%;max-width:1100px}
+.card{min-width:0}
+.g2,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.hero{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:22px 26px;margin:0}
+.hero b{font-size:clamp(26px,4vw,38px);margin:6px 0 0}
+.hs{display:flex;gap:26px}.hs strong{display:block;font-size:clamp(15px,2vw,20px);margin-top:4px}
+.home{display:grid;gap:14px;grid-template-rows:auto minmax(0,1fr) auto}
+.wrap.fit{display:flex;flex-direction:column;overflow:hidden}
+.wrap.fit .top{margin-bottom:14px}
+.wrap.fit .home{flex:1;min-height:0}
+.home .card{padding:18px}
+.mid{margin:0;min-height:0;grid-template-columns:1.1fr 1fr}
+.col{display:flex;flex-direction:column;min-height:0}
+.col .chart{flex:1;height:auto;min-height:70px}
+.recent{flex:1;min-height:0;overflow:auto}
+.home .btn{padding:12px;margin-top:8px}
+.low{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.low .bar{margin:8px 0 6px}
+.fitcard{display:flex;flex-direction:column;height:calc(100dvh - 140px);min-height:360px}
+.dcard{height:calc(100dvh - 260px)}
+.scrollbox{flex:1;min-height:0;overflow:auto}
+.toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:#1a1b1f;color:#fff;border-radius:14px;padding:12px 16px;display:flex;gap:16px;align-items:center;z-index:40;box-shadow:0 8px 30px rgba(0,0,0,.3);animation:up .25s}
+.toast button{background:none;border:0;color:#8ea2ff;font-weight:700;cursor:pointer}
+.md.wide{max-width:660px}
+.sec{margin:16px 0 6px;font-size:15px}
+.mscroll{max-height:260px;overflow:auto}
+.lrow{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}.lrow>span{flex:none;width:92px}.lrow>div{min-width:0;word-break:break-word}
+.urow{display:flex;gap:12px;align-items:center;padding:14px 4px;border-bottom:1px solid var(--line);flex-wrap:wrap}.urow:last-child{border:0}
+.uinfo{flex:1 1 200px;min-width:0;line-height:1.55;font-size:14px}
+.uact{display:flex;gap:4px;flex-wrap:wrap;flex:0 0 auto}
+.udot{width:10px;height:10px;border-radius:50%;background:var(--bar);flex:none}.udot.on{background:var(--g);box-shadow:0 0 0 4px color-mix(in srgb,var(--g) 25%,transparent)}
+@media(max-width:860px){
+  .wrap.fit{display:block;overflow:visible}
+  .home{display:flex;flex-direction:column}
+  .mid{grid-template-columns:1fr}
+  .col .chart{flex:none;height:105px}
+  .recent{overflow:visible}
+  .low{grid-template-columns:1fr 1fr}.low .limit{grid-column:1/-1;order:3}
+  .hero{padding:18px}.hs{gap:18px}
+  .fitcard{height:calc(100dvh - 190px)}.dcard{height:calc(100dvh - 300px)}
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .toast{bottom:90px;width:calc(100% - 28px);justify-content:space-between}
+}
+@media(max-width:860px) and (max-height:800px){.recent .op:nth-child(n+3){display:none}}
+@media(max-width:860px) and (max-height:700px){.col .chart{display:none}}
+
+/* ===== v5: язык, валюты ===== */
+.tr{display:flex;align-items:center;gap:10px}
+.langsw{display:inline-flex;background:var(--soft);border-radius:10px;padding:3px}
+.langsw button{border:0;background:none;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;color:var(--mut);cursor:pointer}
+.langsw button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+.amt{display:grid;grid-template-columns:1fr 112px;gap:10px}
+.hint{font-size:13px;color:var(--mut);margin-top:6px;line-height:1.5}
+.dl{display:block;font-size:12px;text-align:right}
+.rs{flex-basis:100%;display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mut);cursor:pointer;padding-top:10px;border-top:1px solid var(--line)}
+.rs .v{color:var(--ink);font-weight:600}.rs em{font-style:normal;font-size:11px}
+.conv{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:10px;align-items:end}
+.convres{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+.convres b{font-size:clamp(16px,2.4vw,20px);word-break:break-word}
+@media(max-width:560px){.conv{grid-template-columns:1fr 1fr}.conv>div:first-child{grid-column:1/-1}.tr{gap:6px}.langsw button{padding:6px 8px}}
+@media(max-width:860px){.bottom button{font-size:10px;padding:7px 0}.bottom button span{font-size:18px}}
+
+/* ===== v5 merge ===== */
+.annc{display:flex;gap:12px;justify-content:space-between;align-items:center;background:color-mix(in srgb,var(--acc) 14%,var(--card));border:1px solid color-mix(in srgb,var(--acc) 35%,transparent);border-radius:16px;padding:12px 16px;margin-bottom:14px;font-size:14px}
+.annc button{background:none;border:0;cursor:pointer;font-size:16px;color:var(--mut)}
+.mbar{height:5px;background:var(--soft);border-radius:5px;margin-top:5px;overflow:hidden}.mbar i{display:block;height:100%;background:var(--g)}
+.ta{width:100%;min-height:110px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);margin:10px 0 4px;outline:none;resize:vertical;color:inherit;font:inherit}
+
+/* ===== v6: без бокового скролла на телефонах =====
+   Причина: у .main задан overflow-y:auto, из-за чего overflow-x тоже становился auto,
+   и любой чуть более широкий элемент давал прокрутку вбок. */
+html,body{overflow-x:hidden;overflow-x:clip;max-width:100%;overscroll-behavior-x:none}
+.main{overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y pinch-zoom}
+.md,.scrollbox,.recent,.mscroll{overflow-x:hidden}
+input,select{min-width:0;max-width:100%}
+input[type=date]{-webkit-appearance:none;appearance:none;display:block;min-height:46px;text-align:left}
+/* сетки не раздвигаются от содержимого */
+.two,.qa,.stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.amt{grid-template-columns:minmax(0,1fr) 112px}
+.conv{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr)}
+@media(max-width:860px){.g3,.pgrid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:560px){.conv{grid-template-columns:repeat(2,minmax(0,1fr))}.conv>div:first-child{grid-column:1/-1}}
+@media(max-width:420px){.two,.stats{grid-template-columns:minmax(0,1fr)}}
+/* длинные слова и суммы переносятся, а не растягивают экран */
+.op .t,.uinfo,.lrow>div,.insight,.hint,.annc span,.convres b,.big{overflow-wrap:anywhere}
+.annc span{min-width:0}
+
+/* ===== v7: аккуратный адаптив (телефон, планшет, горизонтальный экран) ===== */
+*{-webkit-tap-highlight-color:transparent}
+.btn{min-height:48px}.seg button{min-height:44px}.x{min-width:36px;min-height:36px}
+.lo{display:none}
+@keyframes sheet{from{transform:translateY(100%)}}
+
+@media(max-width:860px){
+  /* шапка и кнопка выхода (боковое меню на телефоне скрыто) */
+  .wrap{padding:calc(14px + env(safe-area-inset-top)) 14px calc(104px + env(safe-area-inset-bottom))}
+  .top{margin-bottom:16px}
+  .tr{gap:8px}
+  .lo{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--mut);font-size:18px;cursor:pointer}
+  .lo:active{background:var(--soft)}
+
+  /* нижнее меню: плавающая «таблетка» */
+  .bottom{left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));padding:6px;gap:2px;border:1px solid var(--line);border-radius:24px;background:color-mix(in srgb,var(--card) 90%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(20,24,40,.16)}
+  .bottom button{min-width:0;padding:8px 0;border-radius:18px;transition:.2s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bottom button.on{background:var(--acc);color:var(--acc-ink);box-shadow:0 4px 14px color-mix(in srgb,var(--acc) 40%,transparent)}
+  .bottom button:active{transform:scale(.94)}
+  .fitcard{height:calc(100dvh - 210px)}.dcard{height:calc(100dvh - 320px)}
+  .toast{bottom:calc(96px + env(safe-area-inset-bottom))}
+
+  /* карточка баланса */
+  .hero{padding:20px;border-radius:26px}
+  .hero>div:first-child{flex:1 1 100%}
+  .hero b{font-size:clamp(28px,9vw,38px)}
+  .hs{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .hs>div{background:rgba(255,255,255,.14);border-radius:16px;padding:10px 14px}
+  .hs strong{font-size:clamp(15px,4.6vw,19px)}
+  .card{border-radius:22px}
+  .home{gap:12px}
+  .qa .btn{min-height:52px}
+}
+
+/* планшет: колонки пошире, контент по центру */
+@media(min-width:620px) and (max-width:860px){
+  .wrap{max-width:760px;padding-left:22px;padding-right:22px}
+  .mid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .low{grid-template-columns:repeat(3,minmax(0,1fr))}.low .limit{grid-column:auto;order:0}
+  .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+
+/* маленькие телефоны */
+@media(max-width:360px){
+  .wrap{padding-left:10px;padding-right:10px}
+  .card{padding:14px}.hero{padding:16px}
+  .bottom button{font-size:9px}.bottom button span{font-size:17px}
+}
+
+/* окна как «шторка» снизу */
+@media(max-width:560px){
+  .ov{align-items:end;padding:0}
+  .md,.md.wide{max-width:100%;border-radius:28px 28px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom));max-height:90dvh;animation:sheet .28s cubic-bezier(.2,.8,.2,1)}
+  .md:before{content:"";display:block;width:42px;height:4px;border-radius:4px;background:var(--bar);margin:-8px auto 16px}
+}
+
+/* телефон лёжа: только значки, меню ниже */
+@media(max-width:860px) and (max-height:480px){
+  .bottom{bottom:6px;padding:3px}
+  .bottom button{flex-direction:row;justify-content:center;font-size:0;padding:6px 0}
+  .bottom button span{font-size:20px}
+  .wrap{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  .fitcard{height:auto;min-height:300px}.dcard{height:auto;min-height:260px}
+}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== v8: кнопка-«глаз», главная на один экран, более яркий дизайн ===== */
+.eye{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--card);font-size:17px;cursor:pointer;transition:.2s}
+.eye:hover{background:var(--soft)}.eye:active{transform:scale(.92)}
+.eye.on{background:var(--acc);border-color:var(--acc);box-shadow:0 4px 14px color-mix(in srgb,var(--acc) 40%,transparent)}
+
+/* оформление */
+.hero b,.big,strong,.hs strong{font-variant-numeric:tabular-nums}
+.hero{box-shadow:0 14px 34px color-mix(in srgb,var(--acc) 32%,transparent)}
+.hero:before{content:"";position:absolute;left:-70px;bottom:-90px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.07)}
+.hs>div{background:rgba(255,255,255,.14);border-radius:16px;padding:10px 14px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.card{transition:transform .2s,box-shadow .2s,border-color .2s}
+@media(hover:hover){.card:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--acc) 35%,var(--line))}}
+.chart div:last-child i,.chart .on i{background:linear-gradient(180deg,var(--acc),color-mix(in srgb,var(--acc) 55%,#a855f7))}
+.bar>i,.bar>div{background:linear-gradient(90deg,var(--acc),color-mix(in srgb,var(--acc) 55%,#a855f7))}
+.side .on,.side button.on{box-shadow:0 8px 20px color-mix(in srgb,var(--acc) 35%,transparent)}
+h1{letter-spacing:-.02em}
+
+/* на телефоне: Главная целиком помещается на экран */
+@media(max-width:860px){
+  .shell{height:100dvh}
+  .main:has(.wrap.fit){overflow:hidden;display:flex;flex-direction:column}
+  .wrap.fit{display:flex;flex-direction:column;overflow:hidden;flex:1;min-height:0;padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+  .wrap.fit .top{margin-bottom:10px}
+  .wrap.fit .home{flex:1;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:10px}
+  .wrap.fit .hero{padding:14px 16px;gap:8px}
+  .wrap.fit .hero b{font-size:clamp(26px,8vw,34px);margin:2px 0 0}
+  .wrap.fit .hs>div{padding:7px 12px}
+  .wrap.fit .mid{min-height:0;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);gap:10px}
+  .wrap.fit .mid>.card{padding:12px 14px;min-height:0}
+  .wrap.fit .chart{height:74px;gap:6px}
+  .wrap.fit .recent{overflow:auto;flex:1;min-height:0}
+  .wrap.fit .low{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .wrap.fit .low .card{padding:12px 14px}
+  .wrap.fit .qcard{grid-column:1/-1;padding:8px}
+  .wrap.fit .qcard>:not(.qa){display:none}
+  .wrap.fit .qcard .btn{min-height:44px;margin:0}
+}
+/* низкие экраны: убираем график, чтобы осталось место для операций */
+@media(max-width:860px) and (max-height:720px){.wrap.fit .mid>.card:first-child{display:none}.wrap.fit .mid{grid-template-rows:minmax(0,1fr)}}
+
+/* ===== v9: калькулятор в сумме, колокольчик ===== */
+.calcrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.calcrow .chip{min-width:44px;min-height:38px;justify-content:center}
+.bellw{position:relative;flex:none}
+.bellw .eye{position:relative}
+.dot{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--r);color:#fff;font:700 11px/18px system-ui,sans-serif;font-style:normal;text-align:center}
+.nfp{position:absolute;right:0;top:46px;z-index:60;width:min(330px,calc(100vw - 28px));max-height:60dvh;overflow:auto;padding:14px;border-radius:20px;background:var(--card);border:1px solid var(--line);box-shadow:0 18px 44px rgba(20,24,40,.22);display:flex;flex-direction:column;gap:8px}
+.nfp .mut{margin:6px 0 0}
+.nfi{display:block;width:100%;text-align:left;padding:11px 12px;border-radius:14px;border:1px solid var(--line);background:var(--soft);color:var(--ink);font:inherit;font-size:14px;line-height:1.35;cursor:pointer;overflow-wrap:anywhere}
+.nfi.l2{border-color:color-mix(in srgb,var(--r) 45%,var(--line));background:var(--rb)}
+.nfi.l1{border-color:color-mix(in srgb,#f59e0b 50%,var(--line))}
+.nfi:active{transform:scale(.98)}
+
+/* ===== v10: адаптив без наложений — обычный скролл вниз, без скролла вбок =====
+   Раньше главная принудительно втискивалась в один экран (overflow:hidden + фиксированные
+   высоты), из-за чего блоки наезжали друг на друга. Теперь всё идёт обычным потоком,
+   страница прокручивается вниз, а боковой скролл полностью отключён. */
+html,body{overflow-x:hidden;overflow-x:clip;max-width:100%;overscroll-behavior-x:none}
+.shell{max-width:100vw;overflow-x:clip}
+.main,.main:has(.wrap.fit){display:block;overflow-y:auto;overflow-x:hidden;overscroll-behavior-x:none;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}
+.wrap,.wrap.fit{display:block;flex:none;height:auto;min-height:0;overflow:visible}
+.wrap>*{min-width:0;max-width:100%}
+.wrap.fit .home,.home{display:flex;flex-direction:column;gap:14px}
+.wrap.fit .mid,.mid{display:grid;grid-template-rows:none;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:14px;margin:0}
+.wrap.fit .mid>.card:first-child{display:flex}
+.col .chart,.wrap.fit .chart{flex:none;display:flex;height:170px}
+.wrap.fit .recent,.recent{flex:none;overflow:visible}
+.recent .op:nth-child(n+3){display:flex}
+.wrap.fit .qcard>:not(.qa){display:block}
+.low{grid-template-columns:repeat(3,minmax(0,1fr))}
+.fitcard,.dcard{height:auto;min-height:0}
+.scrollbox{flex:none;overflow:visible}
+.card,.hero,.op,.top{max-width:100%}
+.top h1{min-width:0;flex:1 1 0}
+
+/* телефон и небольшой планшет: всё в одну колонку, нижнее меню не перекрывает контент */
+@media(max-width:860px){
+  .main,.main:has(.wrap.fit){height:100dvh;padding-bottom:0}
+  .wrap,.wrap.fit{padding:calc(14px + env(safe-area-inset-top)) 14px calc(116px + env(safe-area-inset-bottom))}
+  .wrap.fit .hero{padding:20px;gap:12px}
+  .wrap.fit .hero b{font-size:clamp(28px,9vw,38px);margin:4px 0 0}
+  .wrap.fit .hs>div{padding:10px 14px}
+  .wrap.fit .mid,.mid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .wrap.fit .mid>.card{padding:18px}
+  .col .chart,.wrap.fit .chart{height:120px;gap:8px}
+  .wrap.fit .low,.low{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .wrap.fit .low .card{padding:16px}
+  .low .limit{grid-column:1/-1;order:3}
+  .wrap.fit .qcard{grid-column:1/-1;padding:16px}
+  .wrap.fit .qcard .btn{min-height:52px}
+  .fitcard,.dcard{height:auto;min-height:0}
+  /* всплывающее окно колокольчика — по ширине экрана, не уезжает за край */
+  .nfp{position:fixed;left:14px;right:14px;top:calc(64px + env(safe-area-inset-top));width:auto;max-height:70dvh}
+}
+@media(min-width:620px) and (max-width:860px){
+  .wrap.fit .mid,.mid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wrap.fit .low,.low{grid-template-columns:repeat(3,minmax(0,1fr))}.low .limit{grid-column:auto;order:0}
+}
+
+/* узкие телефоны: шапка переносится на 2 строки, строки списков не вылезают */
+@media(max-width:380px){
+  .top{flex-wrap:wrap}
+  .top h1{flex:1 1 100%}
+  .tr{width:100%;justify-content:flex-end}
+  .top .ava{display:none}
+  .op{gap:8px}.ic{width:38px;height:38px;font-size:17px}
+  .wrap.fit .low,.low{grid-template-columns:minmax(0,1fr)}
+}
+
+/* телефон лёжа: низкий экран тоже просто скроллится */
+@media(max-width:860px) and (max-height:480px){
+  .wrap,.wrap.fit{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+  .col .chart,.wrap.fit .chart{height:90px}
+}
+
+/* ===== v10.1: телефон — «Накопления» на всю ширину, «Быстро добавить» сразу под ними ===== */
+@media(max-width:619px){
+  .wrap.fit .low,.low{grid-template-columns:minmax(0,1fr);gap:12px}
+  .wrap.fit .low .goal{grid-column:auto;order:0}
+  .wrap.fit .low .qcard{grid-column:auto;order:1}
+  .wrap.fit .low .limit{grid-column:auto;order:2}
+}
+
+/* ===== v10.2: вкладки с 4+ кнопками (админка) — сетка 2×2, чтобы «+ Новый аккаунт» не обрезалась ===== */
+.seg button{min-width:0;line-height:1.2;overflow-wrap:anywhere}
+.seg:has(> button:nth-child(4)){display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:861px){.seg:has(> button:nth-child(4)){display:flex}}
+
+@media(max-width:520px){.urow{align-items:flex-start}.uact{width:100%;padding-left:22px}}
