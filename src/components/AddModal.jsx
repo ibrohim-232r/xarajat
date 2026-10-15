@@ -4,14 +4,14 @@ import { catLabel, t } from '../i18n.js'
 import { RatesCtx, choices, fmtRate, rateOf } from '../rates.js'
 import { calc, catsFor, catSpent, fmt, today } from '../utils.js'
 
-export default function AddModal({ type: t0, initial, settings, tx = [], onSave, onClose }) {
+export default function AddModal({ type: t0, initial, defDate, settings, tx = [], onSave, onClose }) {
   const rates = useContext(RatesCtx)
   const i = initial
   const [type, setType] = useState(i ? i.type : t0)
   const [cur, setCur] = useState(i && i.cur ? i.cur : 'UZS')
   const [amount, setAmount] = useState(i ? String(i.cur ? i.orig : i.amount) : '')
   const [cat, setCat] = useState(i ? i.cat : Object.keys(catsFor(settings, t0))[0])
-  const [date, setDate] = useState(i ? i.date : today())
+  const [date, setDate] = useState(i ? i.date : defDate || today())
   const [note, setNote] = useState(i ? i.note : '')
   const [err, setErr] = useState('')
   const pick = k => { setType(k); setCat(Object.keys(catsFor(settings, k))[0]) }

@@ -4,9 +4,9 @@ import AddModal from './AddModal.jsx'
 import OpRow from './OpRow.jsx'
 import { t } from '../i18n.js'
 import { RatesCtx, flag, fmtRate } from '../rates.js'
-import { catsFor, fmt, monName, sortTx, stats, week, wdName } from '../utils.js'
+import { catsFor, fmt, monName, sortTx, stats, today, week, wdName } from '../utils.js'
 
-export default function Home({ data, updData, go }) {
+export default function Home({ data, updData, go, openDay }) {
   const rates = useContext(RatesCtx)
   const [add, setAdd] = useState(null)
   const [goalOpen, setGoalOpen] = useState(false)
@@ -38,10 +38,10 @@ export default function Home({ data, updData, go }) {
       </div>
       <div className="g3 mid">
         <div className="card col">
-          <div className="hd"><h3>{t('expenses')}</h3><span className="mut">{t('this_week')}</span></div>
-          <div className="chart">
+          <div className="hd"><h3>{t('expenses')}</h3><button className="link" onClick={() => openDay(today())}>{t('n_daily')} ›</button></div>
+          <div className="chart clk">
             {w.map((x, i) => (
-              <div key={x.k} className={x.now ? 'on' : ''} title={fmt(x.sum)}>
+              <div key={x.k} className={x.now ? 'on' : ''} title={fmt(x.sum)} role="button" tabIndex={0} aria-label={t('n_daily') + ': ' + x.k} onClick={() => openDay(x.k)} onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && openDay(x.k)}>
                 <i style={{ height: Math.max(4, (x.sum / mx) * 100) + '%' }} />{wdName(i)}
               </div>
             ))}

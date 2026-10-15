@@ -5,6 +5,7 @@ import Home from './components/Home.jsx'
 import Operations from './components/Operations.jsx'
 import Debts from './components/Debts.jsx'
 import Reports from './components/Reports.jsx'
+import DayReport from './components/DayReport.jsx'
 import Rates from './components/Rates.jsx'
 import Profile from './components/Profile.jsx'
 import Admin from './components/Admin.jsx'
@@ -15,11 +16,11 @@ import { getLang, saveLang, setLangVar, t } from './i18n.js'
 import { RatesCtx, cachedRates, loadRates } from './rates.js'
 import Lock from './components/Lock.jsx'
 import { hasPin } from './pin.js'
-import { DEF_SET, genRec, norm, setPrivacy } from './utils.js'
+import { DEF_SET, genRec, norm, setPrivacy, today } from './utils.js'
 import { installApp, useInstall } from './install.js'
 
 // [ключ, иконка, подпись в меню, короткая подпись для нижней панели телефона]
-const NAV = [['home', '🏠', 'n_home', 'n_home_s'], ['ops', '📋', 'n_ops', 'n_ops_s'], ['report', '📊', 'n_report', 'n_report'], ['rates', '💱', 'n_rates', 'n_rates'], ['debts', '🤝', 'n_debts', 'n_debts'], ['profile', '👤', 'n_profile', 'n_profile']]
+const NAV = [['home', '🏠', 'n_home', 'n_home_s'], ['ops', '📋', 'n_ops', 'n_ops_s'], ['report', '📊', 'n_report', 'n_report'], ['daily', '🗓', 'n_daily', 'n_daily_s'], ['rates', '💱', 'n_rates', 'n_rates'], ['debts', '🤝', 'n_debts', 'n_debts'], ['profile', '👤', 'n_profile', 'n_profile']]
 const lum = c => { const n = parseInt(c.slice(1), 16); return (((n >> 16) * 299) + (((n >> 8) & 255) * 587) + ((n & 255) * 114)) / 1000 }
 const sig = d => JSON.stringify([d.tx, d.debts, d.rec, d.goal, d.settings, d.announce])
 const S = x => JSON.stringify(x)
@@ -42,6 +43,8 @@ export default function App() {
   const [data, setData] = useState(null)
   const [ready, setReady] = useState(false)
   const [view, setView] = useState('home')
+  const [day, setDay] = useState(today())
+  const openDay = k => { setDay(k); setView('daily') }
   const [err, setErr] = useState('')
   const [notice, setNotice] = useState('')
   const [lang, setLang] = useState(getLang())
@@ -142,7 +145,7 @@ export default function App() {
   if (locked) return <Lock user={user} onUnlock={() => setLocked(false)} onLogout={async () => { setLocked(false); await logout() }} />
   const ann = data.announce && String(data.announce.id) !== annSeen ? data.announce : null
   const nav = user.role === 'admin' ? [...NAV, ['admin', '🛠', 'n_admin', 'n_admin']] : NAV
-  const titles = { home: t('hello', { name: user.name }), ops: t('n_ops'), report: t('h_report'), rates: t('h_rates'), debts: t('n_debts'), profile: t('n_profile'), admin: t('h_admin') }
+  const titles = { home: t('hello', { name: user.name }), ops: t('n_ops'), report: t('h_report'), daily: t('h_daily'), rates: t('h_rates'), debts: t('n_debts'), profile: t('n_profile'), admin: t('h_admin') }
 
   return (
     <RatesCtx.Provider value={rates}>
@@ -170,9 +173,10 @@ export default function App() {
               </div>
             </div>
             {ann && <div className="annc"><span>📢 {ann.text}</span><button onClick={() => { localStorage.setItem('fin_ann_seen', String(ann.id)); setAnnSeen(String(ann.id)) }}>✕</button></div>}
-            {view === 'home' && <Home data={data} updData={updData} go={setView} />}
+            {view === 'home' && <Home data={data} updData={updData} go={setView} openDay={openDay} />}
             {view === 'ops' && <Operations data={data} updData={updData} />}
             {view === 'report' && <Reports data={data} />}
+            {view === 'daily' && <DayReport data={data} updData={updData} day={day} setDay={setDay} />}
             {view === 'rates' && <Rates data={data} updData={updData} reload={reloadRates} loading={rLoading} />}
             {view === 'debts' && <Debts data={data} updData={updData} />}
             {view === 'profile' && <Profile user={user} data={data} lang={lang} onLang={changeLang} setUser={setUser} updData={updData} replaceData={replaceData} logout={logout} />}

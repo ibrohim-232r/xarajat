@@ -270,7 +270,7 @@ input[type=date]{-webkit-appearance:none;appearance:none;display:block;min-heigh
 .hs>div{background:rgba(255,255,255,.14);border-radius:16px;padding:10px 14px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .card{transition:transform .2s,box-shadow .2s,border-color .2s}
 @media(hover:hover){.card:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--acc) 35%,var(--line))}}
-.chart div:last-child i,.chart .on i{background:linear-gradient(180deg,var(--acc),color-mix(in srgb,var(--acc) 55%,#a855f7))}
+.chart .on i{background:linear-gradient(180deg,var(--acc),color-mix(in srgb,var(--acc) 55%,#a855f7))}
 .bar>i,.bar>div{background:linear-gradient(90deg,var(--acc),color-mix(in srgb,var(--acc) 55%,#a855f7))}
 .side .on,.side button.on{box-shadow:0 8px 20px color-mix(in srgb,var(--acc) 35%,transparent)}
 h1{letter-spacing:-.02em}
@@ -387,3 +387,23 @@ html,body{overflow-x:hidden;overflow-x:clip;max-width:100%;overscroll-behavior-x
 @media(min-width:861px){.seg:has(> button:nth-child(4)){display:flex}}
 
 @media(max-width:520px){.urow{align-items:flex-start}.uact{width:100%;padding-left:22px}}
+
+/* кликабельные столбики недели на главной */
+.chart.clk div{cursor:pointer;border-radius:10px;transition:.2s}
+.chart.clk div:hover i,.chart.clk div:focus-visible i{background:var(--acc);opacity:.75}
+.chart.clk div:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.chart.clk div:active{transform:scale(.96)}
+/* неделя в дневном отчёте */
+.dwk{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-bottom:14px;padding:12px}
+.dwk button{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:5px;height:104px;padding:8px 2px;border:1px solid transparent;border-radius:14px;background:none;color:var(--mut);cursor:pointer;transition:.2s;min-width:0}
+.dwk button:hover:not(:disabled){background:var(--soft)}
+.dwk button:disabled{opacity:.35;cursor:default}
+.dwk small{font-size:11px}
+.dwk .bw{display:flex;align-items:flex-end;justify-content:center;width:100%;height:46px}
+.dwk i{display:block;width:60%;max-width:22px;min-height:4px;border-radius:6px;background:var(--bar)}
+.dwk b{font-size:14px;font-weight:600;color:var(--ink)}
+.dwk .tdy b{color:var(--acc)}
+.dwk .on{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.dwk .on i{background:var(--acc-ink)}.dwk .on b{color:var(--acc-ink)}
+@media(max-width:420px){.dwk{gap:3px;padding:8px}.dwk button{height:92px}}
+@media print{.dwk{display:none}}
